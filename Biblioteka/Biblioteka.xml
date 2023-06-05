@@ -1,0 +1,52 @@
+<database>
+  <table name="Ksiazki">
+    <column name="ID" type="INT" primaryKey="true" />
+    <column name="Tytul" type="VARCHAR(255)" />
+    <column name="Autor" type="VARCHAR(255)" />
+    <foreignKey column="Kategoria" references="Kategorie(ID)" />
+    <column name="Opis" type="TEXT" />
+    <column name="Dostepnosc" type="VARCHAR(50)" />
+  </table>
+
+  <table name="Czytelnicy">
+    <column name="ID" type="INT" primaryKey="true" />
+    <column name="Imie" type="VARCHAR(255)" />
+    <column name="Nazwisko" type="VARCHAR(255)" />
+    <column name="Adres" type="VARCHAR(255)" />
+    <column name="NumerTelefonu" type="VARCHAR(20)" />
+    <column name="Email" type="VARCHAR(255)" />
+  </table>
+
+  <table name="Wypozyczenia">
+    <column name="ID" type="INT" primaryKey="true" />
+    <column name="KsiazkaID" type="INT" />
+    <column name="CzytelnikID" type="INT" />
+    <column name="DataWypozyczenia" type="DATE" />
+    <column name="DataZwrotu" type="DATE" />
+    <foreignKey column="KsiazkaID" references="Ksiazki(ID)" />
+    <foreignKey column="CzytelnikID" references="Czytelnicy(ID)" />
+  </table>
+
+  <table name="Pracownicy">
+    <column name="ID" type="INT" primaryKey="true" />
+    <column name="Imie" type="VARCHAR(255)" />
+    <column name="Nazwisko" type="VARCHAR(255)" />
+    <column name="Stanowisko" type="VARCHAR(255)" />
+    <column name="DataZatrudnienia" type="DATE" />
+  </table>
+
+  <table name="Kategorie">
+    <column name="ID" type="INT" primaryKey="true" />
+    <column name="Nazwa" type="VARCHAR(255)" />
+  </table>
+
+  <table name="Opinie">
+    <column name="ID" type="INT" primaryKey="true" />
+    <column name="KsiazkaID" type="INT" />
+    <column name="CzytelnikID" type="INT" />
+    <column name="Tresc" type="TEXT" />
+    <column name="Ocena" type="INT" />
+    <foreignKey column="KsiazkaID" references="Ksiazki(ID)" />
+    <foreignKey column="CzytelnikID" references="Czytelnicy(ID)" />
+  </table>
+</database>
